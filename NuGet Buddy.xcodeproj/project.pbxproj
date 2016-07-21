@@ -1,0 +1,508 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5AB9A1CB1D405B58004DCB9C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1CA1D405B58004DCB9C /* AppDelegate.m */; };
+		5AB9A1CE1D405B58004DCB9C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1CD1D405B58004DCB9C /* main.m */; };
+		5AB9A1D01D405B58004DCB9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AB9A1CF1D405B58004DCB9C /* Assets.xcassets */; };
+		5AB9A1D31D405B58004DCB9C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AB9A1D11D405B58004DCB9C /* MainMenu.xib */; };
+		5AB9A1DE1D405B58004DCB9C /* NuGet_BuddyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1DD1D405B58004DCB9C /* NuGet_BuddyTests.m */; };
+		5AB9A1E91D405B59004DCB9C /* NuGet_BuddyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1E81D405B59004DCB9C /* NuGet_BuddyUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5AB9A1DA1D405B58004DCB9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5AB9A1BE1D405B58004DCB9C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5AB9A1C51D405B58004DCB9C;
+			remoteInfo = "NuGet Buddy";
+		};
+		5AB9A1E51D405B59004DCB9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5AB9A1BE1D405B58004DCB9C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5AB9A1C51D405B58004DCB9C;
+			remoteInfo = "NuGet Buddy";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5AB9A1C61D405B58004DCB9C /* NuGet Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NuGet Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AB9A1C91D405B58004DCB9C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5AB9A1CA1D405B58004DCB9C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5AB9A1CD1D405B58004DCB9C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5AB9A1CF1D405B58004DCB9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5AB9A1D21D405B58004DCB9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		5AB9A1D41D405B58004DCB9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5AB9A1D91D405B58004DCB9C /* NuGet BuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NuGet BuddyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AB9A1DD1D405B58004DCB9C /* NuGet_BuddyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NuGet_BuddyTests.m; sourceTree = "<group>"; };
+		5AB9A1DF1D405B59004DCB9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5AB9A1E41D405B59004DCB9C /* NuGet BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NuGet BuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AB9A1E81D405B59004DCB9C /* NuGet_BuddyUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NuGet_BuddyUITests.m; sourceTree = "<group>"; };
+		5AB9A1EA1D405B59004DCB9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5AB9A1C31D405B58004DCB9C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5AB9A1D61D405B58004DCB9C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5AB9A1E11D405B59004DCB9C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5AB9A1BD1D405B58004DCB9C = {
+			isa = PBXGroup;
+			children = (
+				5AB9A1C81D405B58004DCB9C /* NuGet Buddy */,
+				5AB9A1DC1D405B58004DCB9C /* NuGet BuddyTests */,
+				5AB9A1E71D405B59004DCB9C /* NuGet BuddyUITests */,
+				5AB9A1C71D405B58004DCB9C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5AB9A1C71D405B58004DCB9C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5AB9A1C61D405B58004DCB9C /* NuGet Buddy.app */,
+				5AB9A1D91D405B58004DCB9C /* NuGet BuddyTests.xctest */,
+				5AB9A1E41D405B59004DCB9C /* NuGet BuddyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5AB9A1C81D405B58004DCB9C /* NuGet Buddy */ = {
+			isa = PBXGroup;
+			children = (
+				5AB9A1C91D405B58004DCB9C /* AppDelegate.h */,
+				5AB9A1CA1D405B58004DCB9C /* AppDelegate.m */,
+				5AB9A1CF1D405B58004DCB9C /* Assets.xcassets */,
+				5AB9A1D11D405B58004DCB9C /* MainMenu.xib */,
+				5AB9A1D41D405B58004DCB9C /* Info.plist */,
+				5AB9A1CC1D405B58004DCB9C /* Supporting Files */,
+			);
+			path = "NuGet Buddy";
+			sourceTree = "<group>";
+		};
+		5AB9A1CC1D405B58004DCB9C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5AB9A1CD1D405B58004DCB9C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5AB9A1DC1D405B58004DCB9C /* NuGet BuddyTests */ = {
+			isa = PBXGroup;
+			children = (
+				5AB9A1DD1D405B58004DCB9C /* NuGet_BuddyTests.m */,
+				5AB9A1DF1D405B59004DCB9C /* Info.plist */,
+			);
+			path = "NuGet BuddyTests";
+			sourceTree = "<group>";
+		};
+		5AB9A1E71D405B59004DCB9C /* NuGet BuddyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5AB9A1E81D405B59004DCB9C /* NuGet_BuddyUITests.m */,
+				5AB9A1EA1D405B59004DCB9C /* Info.plist */,
+			);
+			path = "NuGet BuddyUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5AB9A1C51D405B58004DCB9C /* NuGet Buddy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5AB9A1ED1D405B59004DCB9C /* Build configuration list for PBXNativeTarget "NuGet Buddy" */;
+			buildPhases = (
+				5AB9A1C21D405B58004DCB9C /* Sources */,
+				5AB9A1C31D405B58004DCB9C /* Frameworks */,
+				5AB9A1C41D405B58004DCB9C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NuGet Buddy";
+			productName = "NuGet Buddy";
+			productReference = 5AB9A1C61D405B58004DCB9C /* NuGet Buddy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5AB9A1D81D405B58004DCB9C /* NuGet BuddyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5AB9A1F01D405B59004DCB9C /* Build configuration list for PBXNativeTarget "NuGet BuddyTests" */;
+			buildPhases = (
+				5AB9A1D51D405B58004DCB9C /* Sources */,
+				5AB9A1D61D405B58004DCB9C /* Frameworks */,
+				5AB9A1D71D405B58004DCB9C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5AB9A1DB1D405B58004DCB9C /* PBXTargetDependency */,
+			);
+			name = "NuGet BuddyTests";
+			productName = "NuGet BuddyTests";
+			productReference = 5AB9A1D91D405B58004DCB9C /* NuGet BuddyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5AB9A1E31D405B59004DCB9C /* NuGet BuddyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5AB9A1F31D405B59004DCB9C /* Build configuration list for PBXNativeTarget "NuGet BuddyUITests" */;
+			buildPhases = (
+				5AB9A1E01D405B59004DCB9C /* Sources */,
+				5AB9A1E11D405B59004DCB9C /* Frameworks */,
+				5AB9A1E21D405B59004DCB9C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5AB9A1E61D405B59004DCB9C /* PBXTargetDependency */,
+			);
+			name = "NuGet BuddyUITests";
+			productName = "NuGet BuddyUITests";
+			productReference = 5AB9A1E41D405B59004DCB9C /* NuGet BuddyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5AB9A1BE1D405B58004DCB9C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Pawel Kadluczka";
+				TargetAttributes = {
+					5AB9A1C51D405B58004DCB9C = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					5AB9A1D81D405B58004DCB9C = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 5AB9A1C51D405B58004DCB9C;
+					};
+					5AB9A1E31D405B59004DCB9C = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 5AB9A1C51D405B58004DCB9C;
+					};
+				};
+			};
+			buildConfigurationList = 5AB9A1C11D405B58004DCB9C /* Build configuration list for PBXProject "NuGet Buddy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5AB9A1BD1D405B58004DCB9C;
+			productRefGroup = 5AB9A1C71D405B58004DCB9C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5AB9A1C51D405B58004DCB9C /* NuGet Buddy */,
+				5AB9A1D81D405B58004DCB9C /* NuGet BuddyTests */,
+				5AB9A1E31D405B59004DCB9C /* NuGet BuddyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5AB9A1C41D405B58004DCB9C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AB9A1D01D405B58004DCB9C /* Assets.xcassets in Resources */,
+				5AB9A1D31D405B58004DCB9C /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5AB9A1D71D405B58004DCB9C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5AB9A1E21D405B59004DCB9C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5AB9A1C21D405B58004DCB9C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AB9A1CE1D405B58004DCB9C /* main.m in Sources */,
+				5AB9A1CB1D405B58004DCB9C /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5AB9A1D51D405B58004DCB9C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AB9A1DE1D405B58004DCB9C /* NuGet_BuddyTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5AB9A1E01D405B59004DCB9C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AB9A1E91D405B59004DCB9C /* NuGet_BuddyUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5AB9A1DB1D405B58004DCB9C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5AB9A1C51D405B58004DCB9C /* NuGet Buddy */;
+			targetProxy = 5AB9A1DA1D405B58004DCB9C /* PBXContainerItemProxy */;
+		};
+		5AB9A1E61D405B59004DCB9C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5AB9A1C51D405B58004DCB9C /* NuGet Buddy */;
+			targetProxy = 5AB9A1E51D405B59004DCB9C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5AB9A1D11D405B58004DCB9C /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5AB9A1D21D405B58004DCB9C /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5AB9A1EB1D405B59004DCB9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		5AB9A1EC1D405B59004DCB9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		5AB9A1EE1D405B59004DCB9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "NuGet Buddy/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "moozzyk.NuGet-Buddy";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5AB9A1EF1D405B59004DCB9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "NuGet Buddy/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "moozzyk.NuGet-Buddy";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5AB9A1F11D405B59004DCB9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "NuGet BuddyTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "moozzyk.NuGet-BuddyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NuGet Buddy.app/Contents/MacOS/NuGet Buddy";
+			};
+			name = Debug;
+		};
+		5AB9A1F21D405B59004DCB9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "NuGet BuddyTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "moozzyk.NuGet-BuddyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NuGet Buddy.app/Contents/MacOS/NuGet Buddy";
+			};
+			name = Release;
+		};
+		5AB9A1F41D405B59004DCB9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "NuGet BuddyUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "moozzyk.NuGet-BuddyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "NuGet Buddy";
+			};
+			name = Debug;
+		};
+		5AB9A1F51D405B59004DCB9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "NuGet BuddyUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "moozzyk.NuGet-BuddyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "NuGet Buddy";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5AB9A1C11D405B58004DCB9C /* Build configuration list for PBXProject "NuGet Buddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5AB9A1EB1D405B59004DCB9C /* Debug */,
+				5AB9A1EC1D405B59004DCB9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5AB9A1ED1D405B59004DCB9C /* Build configuration list for PBXNativeTarget "NuGet Buddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5AB9A1EE1D405B59004DCB9C /* Debug */,
+				5AB9A1EF1D405B59004DCB9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5AB9A1F01D405B59004DCB9C /* Build configuration list for PBXNativeTarget "NuGet BuddyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5AB9A1F11D405B59004DCB9C /* Debug */,
+				5AB9A1F21D405B59004DCB9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5AB9A1F31D405B59004DCB9C /* Build configuration list for PBXNativeTarget "NuGet BuddyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5AB9A1F41D405B59004DCB9C /* Debug */,
+				5AB9A1F51D405B59004DCB9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5AB9A1BE1D405B58004DCB9C /* Project object */;
+}
