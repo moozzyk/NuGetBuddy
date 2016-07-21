@@ -22,5 +22,9 @@
     return nil;
 }
 
+-(NSArray *)getPackageVersions:(NSString *)packageId {
+    // TODO: throw 'NotImpementedException/ClassIsAbstractException`?
+    return nil;
+}
 
 @end

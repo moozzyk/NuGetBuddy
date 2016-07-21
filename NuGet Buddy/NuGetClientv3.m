@@ -14,4 +14,8 @@
     return nil;
 }
 
+-(NSArray *)getPackageVersions:(NSString *)packageId {
+    return nil;
+}
+
 @end

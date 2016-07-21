@@ -13,6 +13,9 @@
 @property (strong, readonly) NSString *feed;
 
 -(id)initWithFeed: (NSString *)feed;
+
+// TODO: these should be async
 -(NSArray *)getPackages:(NSString*)filter;
+-(NSArray *)getPackageVersions:(NSString*)packageId;
 
 @end
