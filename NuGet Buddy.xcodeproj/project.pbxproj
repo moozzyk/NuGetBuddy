@@ -15,6 +15,10 @@
 		5AB9A1E91D405B59004DCB9C /* NuGet_BuddyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1E81D405B59004DCB9C /* NuGet_BuddyUITests.m */; };
 		5AB9A1F91D405C7B004DCB9C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1F71D405C7B004DCB9C /* MainViewController.m */; };
 		5AB9A1FA1D405C7B004DCB9C /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AB9A1F81D405C7B004DCB9C /* MainViewController.xib */; };
+		5AB9A2031D4081E1004DCB9C /* NuGetClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A2021D4081E1004DCB9C /* NuGetClient.m */; };
+		5AB9A2061D408235004DCB9C /* NuGetClientv3.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A2051D408235004DCB9C /* NuGetClientv3.m */; };
+		5AB9A2091D408251004DCB9C /* NuGetClientv2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A2081D408251004DCB9C /* NuGetClientv2.m */; };
+		5AB9A20C1D408283004DCB9C /* PackageDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A20B1D408283004DCB9C /* PackageDescription.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,14 @@
 		5AB9A1F61D405C7B004DCB9C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		5AB9A1F71D405C7B004DCB9C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		5AB9A1F81D405C7B004DCB9C /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		5AB9A2011D4081E1004DCB9C /* NuGetClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NuGetClient.h; sourceTree = "<group>"; };
+		5AB9A2021D4081E1004DCB9C /* NuGetClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NuGetClient.m; sourceTree = "<group>"; };
+		5AB9A2041D408235004DCB9C /* NuGetClientv3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NuGetClientv3.h; sourceTree = "<group>"; };
+		5AB9A2051D408235004DCB9C /* NuGetClientv3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NuGetClientv3.m; sourceTree = "<group>"; };
+		5AB9A2071D408251004DCB9C /* NuGetClientv2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NuGetClientv2.h; sourceTree = "<group>"; };
+		5AB9A2081D408251004DCB9C /* NuGetClientv2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NuGetClientv2.m; sourceTree = "<group>"; };
+		5AB9A20A1D408283004DCB9C /* PackageDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageDescription.h; sourceTree = "<group>"; };
+		5AB9A20B1D408283004DCB9C /* PackageDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageDescription.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +113,7 @@
 		5AB9A1C81D405B58004DCB9C /* NuGet Buddy */ = {
 			isa = PBXGroup;
 			children = (
+				5AB9A2001D4081BF004DCB9C /* Engine */,
 				5AB9A1FC1D40627C004DCB9C /* Models */,
 				5AB9A1FB1D40624F004DCB9C /* UI */,
 				5AB9A1CF1D405B58004DCB9C /* Assets.xcassets */,
@@ -154,6 +167,21 @@
 			children = (
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		5AB9A2001D4081BF004DCB9C /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				5AB9A2011D4081E1004DCB9C /* NuGetClient.h */,
+				5AB9A2021D4081E1004DCB9C /* NuGetClient.m */,
+				5AB9A2041D408235004DCB9C /* NuGetClientv3.h */,
+				5AB9A2051D408235004DCB9C /* NuGetClientv3.m */,
+				5AB9A2071D408251004DCB9C /* NuGetClientv2.h */,
+				5AB9A2081D408251004DCB9C /* NuGetClientv2.m */,
+				5AB9A20A1D408283004DCB9C /* PackageDescription.h */,
+				5AB9A20B1D408283004DCB9C /* PackageDescription.m */,
+			);
+			name = Engine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,8 +314,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AB9A2091D408251004DCB9C /* NuGetClientv2.m in Sources */,
+				5AB9A2061D408235004DCB9C /* NuGetClientv3.m in Sources */,
 				5AB9A1CE1D405B58004DCB9C /* main.m in Sources */,
 				5AB9A1F91D405C7B004DCB9C /* MainViewController.m in Sources */,
+				5AB9A2031D4081E1004DCB9C /* NuGetClient.m in Sources */,
+				5AB9A20C1D408283004DCB9C /* PackageDescription.m in Sources */,
 				5AB9A1CB1D405B58004DCB9C /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
