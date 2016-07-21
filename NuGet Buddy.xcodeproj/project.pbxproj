@@ -101,13 +101,9 @@
 		5AB9A1C81D405B58004DCB9C /* NuGet Buddy */ = {
 			isa = PBXGroup;
 			children = (
-				5AB9A1C91D405B58004DCB9C /* AppDelegate.h */,
-				5AB9A1CA1D405B58004DCB9C /* AppDelegate.m */,
-				5AB9A1F61D405C7B004DCB9C /* MainViewController.h */,
-				5AB9A1F71D405C7B004DCB9C /* MainViewController.m */,
-				5AB9A1F81D405C7B004DCB9C /* MainViewController.xib */,
+				5AB9A1FC1D40627C004DCB9C /* Models */,
+				5AB9A1FB1D40624F004DCB9C /* UI */,
 				5AB9A1CF1D405B58004DCB9C /* Assets.xcassets */,
-				5AB9A1D11D405B58004DCB9C /* MainMenu.xib */,
 				5AB9A1D41D405B58004DCB9C /* Info.plist */,
 				5AB9A1CC1D405B58004DCB9C /* Supporting Files */,
 			);
@@ -138,6 +134,26 @@
 				5AB9A1EA1D405B59004DCB9C /* Info.plist */,
 			);
 			path = "NuGet BuddyUITests";
+			sourceTree = "<group>";
+		};
+		5AB9A1FB1D40624F004DCB9C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5AB9A1C91D405B58004DCB9C /* AppDelegate.h */,
+				5AB9A1CA1D405B58004DCB9C /* AppDelegate.m */,
+				5AB9A1F61D405C7B004DCB9C /* MainViewController.h */,
+				5AB9A1F71D405C7B004DCB9C /* MainViewController.m */,
+				5AB9A1F81D405C7B004DCB9C /* MainViewController.xib */,
+				5AB9A1D11D405B58004DCB9C /* MainMenu.xib */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		5AB9A1FC1D40627C004DCB9C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -9,14 +9,15 @@
 #import "MainViewController.h"
 
 @interface MainViewController ()
-
+@property (weak) IBOutlet NSComboBoxCell *feedsCombo;
 @end
 
 @implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
+
+    [self.feedsCombo selectItemAtIndex:0];
 }
 
 @end
