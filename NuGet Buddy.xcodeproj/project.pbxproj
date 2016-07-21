@@ -13,6 +13,8 @@
 		5AB9A1D31D405B58004DCB9C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AB9A1D11D405B58004DCB9C /* MainMenu.xib */; };
 		5AB9A1DE1D405B58004DCB9C /* NuGet_BuddyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1DD1D405B58004DCB9C /* NuGet_BuddyTests.m */; };
 		5AB9A1E91D405B59004DCB9C /* NuGet_BuddyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1E81D405B59004DCB9C /* NuGet_BuddyUITests.m */; };
+		5AB9A1F91D405C7B004DCB9C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1F71D405C7B004DCB9C /* MainViewController.m */; };
+		5AB9A1FA1D405C7B004DCB9C /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AB9A1F81D405C7B004DCB9C /* MainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,9 @@
 		5AB9A1E41D405B59004DCB9C /* NuGet BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NuGet BuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB9A1E81D405B59004DCB9C /* NuGet_BuddyUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NuGet_BuddyUITests.m; sourceTree = "<group>"; };
 		5AB9A1EA1D405B59004DCB9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5AB9A1F61D405C7B004DCB9C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		5AB9A1F71D405C7B004DCB9C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		5AB9A1F81D405C7B004DCB9C /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +103,9 @@
 			children = (
 				5AB9A1C91D405B58004DCB9C /* AppDelegate.h */,
 				5AB9A1CA1D405B58004DCB9C /* AppDelegate.m */,
+				5AB9A1F61D405C7B004DCB9C /* MainViewController.h */,
+				5AB9A1F71D405C7B004DCB9C /* MainViewController.m */,
+				5AB9A1F81D405C7B004DCB9C /* MainViewController.xib */,
 				5AB9A1CF1D405B58004DCB9C /* Assets.xcassets */,
 				5AB9A1D11D405B58004DCB9C /* MainMenu.xib */,
 				5AB9A1D41D405B58004DCB9C /* Info.plist */,
@@ -236,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AB9A1D01D405B58004DCB9C /* Assets.xcassets in Resources */,
+				5AB9A1FA1D405C7B004DCB9C /* MainViewController.xib in Resources */,
 				5AB9A1D31D405B58004DCB9C /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AB9A1CE1D405B58004DCB9C /* main.m in Sources */,
+				5AB9A1F91D405C7B004DCB9C /* MainViewController.m in Sources */,
 				5AB9A1CB1D405B58004DCB9C /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
