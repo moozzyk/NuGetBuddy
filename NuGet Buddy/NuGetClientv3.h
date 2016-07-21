@@ -10,4 +10,6 @@
 
 @interface NuGetClientv3 : NuGetClient
 
+-(NSArray *)getPackages:(NSString*)filter;
+
 @end

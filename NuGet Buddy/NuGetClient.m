@@ -17,7 +17,7 @@
     return self;
 }
 
--(NSMutableArray *)getPackages:(NSString*)filter {
+-(NSArray *)getPackages:(NSString*)filter {
     // TODO: throw 'NotImpementedException/ClassIsAbstractException`?
     return nil;
 }

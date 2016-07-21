@@ -13,6 +13,6 @@
 @property (strong, readonly) NSString *feed;
 
 -(id)initWithFeed: (NSString *)feed;
--(NSMutableArray *)getPackages:(NSString*)filter;
+-(NSArray *)getPackages:(NSString*)filter;
 
 @end

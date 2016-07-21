@@ -10,5 +10,8 @@
 
 @implementation NuGetClientv3
 
+-(NSArray *)getPackages:(NSString*)filter {
+    return nil;
+}
 
 @end
