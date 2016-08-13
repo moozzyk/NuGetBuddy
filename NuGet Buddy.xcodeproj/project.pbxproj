@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A2672621D5D1FAE007516FE /* WebClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2672611D5D1FAE007516FE /* WebClient.m */; };
 		5AB9A1CB1D405B58004DCB9C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1CA1D405B58004DCB9C /* AppDelegate.m */; };
 		5AB9A1CE1D405B58004DCB9C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1CD1D405B58004DCB9C /* main.m */; };
 		5AB9A1D01D405B58004DCB9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AB9A1CF1D405B58004DCB9C /* Assets.xcassets */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A2672601D5D1FAE007516FE /* WebClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebClient.h; sourceTree = "<group>"; };
+		5A2672611D5D1FAE007516FE /* WebClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebClient.m; sourceTree = "<group>"; };
 		5AB9A1C61D405B58004DCB9C /* NuGet Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NuGet Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB9A1C91D405B58004DCB9C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5AB9A1CA1D405B58004DCB9C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 				5AB9A2081D408251004DCB9C /* NuGetClientv2.m */,
 				5AB9A20A1D408283004DCB9C /* PackageDescription.h */,
 				5AB9A20B1D408283004DCB9C /* PackageDescription.m */,
+				5A2672601D5D1FAE007516FE /* WebClient.h */,
+				5A2672611D5D1FAE007516FE /* WebClient.m */,
 			);
 			name = Engine;
 			sourceTree = "<group>";
@@ -317,6 +322,7 @@
 				5AB9A2091D408251004DCB9C /* NuGetClientv2.m in Sources */,
 				5AB9A2061D408235004DCB9C /* NuGetClientv3.m in Sources */,
 				5AB9A1CE1D405B58004DCB9C /* main.m in Sources */,
+				5A2672621D5D1FAE007516FE /* WebClient.m in Sources */,
 				5AB9A1F91D405C7B004DCB9C /* MainViewController.m in Sources */,
 				5AB9A2031D4081E1004DCB9C /* NuGetClient.m in Sources */,
 				5AB9A20C1D408283004DCB9C /* PackageDescription.m in Sources */,
@@ -543,6 +549,7 @@
 				5AB9A1EF1D405B59004DCB9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5AB9A1F01D405B59004DCB9C /* Build configuration list for PBXNativeTarget "NuGet BuddyTests" */ = {
 			isa = XCConfigurationList;
@@ -551,6 +558,7 @@
 				5AB9A1F21D405B59004DCB9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5AB9A1F31D405B59004DCB9C /* Build configuration list for PBXNativeTarget "NuGet BuddyUITests" */ = {
 			isa = XCConfigurationList;
@@ -559,6 +567,7 @@
 				5AB9A1F51D405B59004DCB9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

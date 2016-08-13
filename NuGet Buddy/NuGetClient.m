@@ -10,19 +10,20 @@
 
 @implementation NuGetClient
 
--(id)initWithFeed: (NSString *)feed {
+- (id)initWithFeed: (NSString *)feed webClient:(WebClient *) webClient  {
     if ((self = [super init])) {
         _feed = feed;
+        _webClient = webClient;
     }
     return self;
 }
 
--(NSArray *)getPackages:(NSString*)filter {
+- (NSArray *)getPackages:(NSString*)filter {
     // TODO: throw 'NotImpementedException/ClassIsAbstractException`?
     return nil;
 }
 
--(NSArray *)getPackageVersions:(NSString *)packageId {
+- (NSArray *)getPackageVersions:(NSString *)packageId {
     // TODO: throw 'NotImpementedException/ClassIsAbstractException`?
     return nil;
 }

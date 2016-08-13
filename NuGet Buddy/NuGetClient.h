@@ -7,15 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WebClient.h"
 
 @interface NuGetClient : NSObject
 
 @property (strong, readonly) NSString *feed;
+@property (strong, readonly) WebClient *webClient;
 
--(id)initWithFeed: (NSString *)feed;
+- (id)initWithFeed: (NSString *)feed webClient:(WebClient *)webClient;
 
 // TODO: these should be async
--(NSArray *)getPackages:(NSString*)filter;
--(NSArray *)getPackageVersions:(NSString*)packageId;
+- (NSArray *)getPackages:(NSString*)filter;
+- (NSArray *)getPackageVersions:(NSString*)packageId;
 
 @end

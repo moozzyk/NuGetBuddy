@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#include "WebClient.h"
 
 @interface MainViewController ()
 @property (weak) IBOutlet NSComboBoxCell *feedsCombo;
@@ -20,4 +21,8 @@
     [self.feedsCombo selectItemAtIndex:0];
 }
 
+- (IBAction)showPackages:(id)sender {
+}
+
 @end
+

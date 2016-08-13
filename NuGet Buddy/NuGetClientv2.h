@@ -10,7 +10,7 @@
 
 @interface NuGetClientv2 : NuGetClient
 
--(NSArray *)getPackages:(NSString*)filter;
--(NSArray *)getPackageVersions:(NSString*)packageId;
+- (NSArray *)getPackages:(NSString*)filter;
+- (NSArray *)getPackageVersions:(NSString*)packageId;
 
 @end

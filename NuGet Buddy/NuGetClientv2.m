@@ -10,11 +10,11 @@
 
 @implementation NuGetClientv2
 
--(NSArray *)getPackages:(NSString*)filter {
+- (NSArray *)getPackages:(NSString*)filter {
     return nil;
 }
 
--(NSArray *)getPackageVersions:(NSString *)packageId {
+- (NSArray *)getPackageVersions:(NSString *)packageId {
     return nil;
 }
 

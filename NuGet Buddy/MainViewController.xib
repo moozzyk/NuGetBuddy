@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MainViewController">
             <connections>
                 <outlet property="feedsCombo" destination="H8i-oI-pTK" id="Kat-xV-1qO"/>
+                <outlet property="showPackagesButton" destination="MAo-h8-GyK" id="x75-2b-o8q"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -17,15 +18,26 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="364"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NBb-LP-9Pt">
+                    <rect key="frame" x="18" y="307" width="34" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Feed" id="SkO-qO-bhy">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MAo-h8-GyK">
-                    <rect key="frame" x="337" y="316" width="129" height="32"/>
+                    <rect key="frame" x="337" y="298" width="129" height="32"/>
                     <buttonCell key="cell" type="push" title="Show Packages" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EzZ-Rc-Ol0">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
+                        <connections>
+                            <action selector="showPackages:" target="-2" id="qn6-PZ-zVf"/>
+                        </connections>
                     </buttonCell>
                 </button>
                 <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ksB-IC-H3J">
-                    <rect key="frame" x="58" y="319" width="280" height="26"/>
+                    <rect key="frame" x="58" y="301" width="280" height="26"/>
                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="5" id="H8i-oI-pTK">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -36,14 +48,6 @@
                         </objectValues>
                     </comboBoxCell>
                 </comboBox>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NBb-LP-9Pt">
-                    <rect key="frame" x="18" y="325" width="34" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Feed" id="SkO-qO-bhy">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
             </subviews>
             <point key="canvasLocation" x="353" y="398"/>
         </customView>
