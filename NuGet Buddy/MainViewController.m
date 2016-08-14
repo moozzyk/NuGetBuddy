@@ -22,6 +22,17 @@
 }
 
 - (IBAction)showPackages:(id)sender {
+
+    /* TODO: remove
+    WebClient *webClient = [[WebClient alloc] init];
+    [webClient get:[self.feedsCombo stringValue]
+        responseHandler:^void (NSHTTPURLResponse *httpResponse, NSString *data) {
+            NSLog(@"response status code: %ld data: %@", (long)[httpResponse statusCode], data);
+        }
+        errorHandler:^(NSError *error) {
+            NSLog(@"error: %@", [error localizedDescription]);
+        }];
+     */
 }
 
 @end
