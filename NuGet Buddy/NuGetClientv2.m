@@ -10,7 +10,7 @@
 
 @implementation NuGetClientv2
 
-- (NSArray *)getPackages:(NSString*)filter {
+- (NSArray *)getPackages:(NSString*)filter errorHandler:(errorCompletionBlock)errorHandler {
     return nil;
 }
 

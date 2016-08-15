@@ -10,20 +10,21 @@
 
 @implementation WebClient
 
-- (void)get:(NSString *)urlString
-    responseHandler:(responseCompletionBlock)responseHandler
-    errorHandler:(errorCompletionBlock)errorHandler {
+- (void)get:(NSString*)urlString responseHandler:(completionHandler)responseHandler {
 
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithURL:[NSURL URLWithString:urlString]
         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            NSData *contents;
+            NSHTTPURLResponse *httpResponse;
+
             if (!error) {
-                NSString *contents = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-                responseHandler((NSHTTPURLResponse *)response, contents);
+                contents = data;
+                httpResponse = (NSHTTPURLResponse *)response;
             }
-            else {
-                errorHandler(error);
-            }
+
+            responseHandler(httpResponse, contents, error);
+
         }] resume];
 }
 

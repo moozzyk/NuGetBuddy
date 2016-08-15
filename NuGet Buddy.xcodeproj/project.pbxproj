@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		5A2672621D5D1FAE007516FE /* WebClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2672611D5D1FAE007516FE /* WebClient.m */; };
+		5A2672671D61A45C007516FE /* NuGetClientv3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2672661D61A45C007516FE /* NuGetClientv3Tests.m */; };
+		5A26726B1D61A4F7007516FE /* FakeWebClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A26726A1D61A4F7007516FE /* FakeWebClient.m */; };
 		5AB9A1CB1D405B58004DCB9C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1CA1D405B58004DCB9C /* AppDelegate.m */; };
 		5AB9A1CE1D405B58004DCB9C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1CD1D405B58004DCB9C /* main.m */; };
 		5AB9A1D01D405B58004DCB9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AB9A1CF1D405B58004DCB9C /* Assets.xcassets */; };
 		5AB9A1D31D405B58004DCB9C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AB9A1D11D405B58004DCB9C /* MainMenu.xib */; };
-		5AB9A1DE1D405B58004DCB9C /* NuGet_BuddyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1DD1D405B58004DCB9C /* NuGet_BuddyTests.m */; };
 		5AB9A1E91D405B59004DCB9C /* NuGet_BuddyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1E81D405B59004DCB9C /* NuGet_BuddyUITests.m */; };
 		5AB9A1F91D405C7B004DCB9C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A1F71D405C7B004DCB9C /* MainViewController.m */; };
 		5AB9A1FA1D405C7B004DCB9C /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AB9A1F81D405C7B004DCB9C /* MainViewController.xib */; };
@@ -42,6 +43,9 @@
 /* Begin PBXFileReference section */
 		5A2672601D5D1FAE007516FE /* WebClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebClient.h; sourceTree = "<group>"; };
 		5A2672611D5D1FAE007516FE /* WebClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebClient.m; sourceTree = "<group>"; };
+		5A2672661D61A45C007516FE /* NuGetClientv3Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NuGetClientv3Tests.m; sourceTree = "<group>"; };
+		5A2672691D61A4F7007516FE /* FakeWebClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeWebClient.h; sourceTree = "<group>"; };
+		5A26726A1D61A4F7007516FE /* FakeWebClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeWebClient.m; sourceTree = "<group>"; };
 		5AB9A1C61D405B58004DCB9C /* NuGet Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NuGet Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB9A1C91D405B58004DCB9C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5AB9A1CA1D405B58004DCB9C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -50,7 +54,6 @@
 		5AB9A1D21D405B58004DCB9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		5AB9A1D41D405B58004DCB9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5AB9A1D91D405B58004DCB9C /* NuGet BuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NuGet BuddyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5AB9A1DD1D405B58004DCB9C /* NuGet_BuddyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NuGet_BuddyTests.m; sourceTree = "<group>"; };
 		5AB9A1DF1D405B59004DCB9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5AB9A1E41D405B59004DCB9C /* NuGet BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NuGet BuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB9A1E81D405B59004DCB9C /* NuGet_BuddyUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NuGet_BuddyUITests.m; sourceTree = "<group>"; };
@@ -93,6 +96,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A2672681D61A4E1007516FE /* Fakes */ = {
+			isa = PBXGroup;
+			children = (
+				5A2672691D61A4F7007516FE /* FakeWebClient.h */,
+				5A26726A1D61A4F7007516FE /* FakeWebClient.m */,
+			);
+			name = Fakes;
+			sourceTree = "<group>";
+		};
 		5AB9A1BD1D405B58004DCB9C = {
 			isa = PBXGroup;
 			children = (
@@ -137,8 +149,9 @@
 		5AB9A1DC1D405B58004DCB9C /* NuGet BuddyTests */ = {
 			isa = PBXGroup;
 			children = (
-				5AB9A1DD1D405B58004DCB9C /* NuGet_BuddyTests.m */,
+				5A2672681D61A4E1007516FE /* Fakes */,
 				5AB9A1DF1D405B59004DCB9C /* Info.plist */,
+				5A2672661D61A45C007516FE /* NuGetClientv3Tests.m */,
 			);
 			path = "NuGet BuddyTests";
 			sourceTree = "<group>";
@@ -334,7 +347,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AB9A1DE1D405B58004DCB9C /* NuGet_BuddyTests.m in Sources */,
+				5A26726B1D61A4F7007516FE /* FakeWebClient.m in Sources */,
+				5A2672671D61A45C007516FE /* NuGetClientv3Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

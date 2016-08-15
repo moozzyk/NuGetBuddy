@@ -7,6 +7,7 @@
 //
 
 #import "NuGetClient.h"
+#import "NuGetClientv3.h"
 
 @implementation NuGetClient
 
@@ -18,7 +19,11 @@
     return self;
 }
 
-- (NSArray *)getPackages:(NSString*)filter {
++ (NuGetClient *) createClient:(NSString *)feed webClient:(WebClient *)webClient {
+    return [[NuGetClientv3 alloc] initWithFeed:feed webClient:webClient];
+}
+
+- (NSArray *)getPackages:(NSString*)filter errorHandler:(errorCompletionBlock)errorHandler {
     // TODO: throw 'NotImpementedException/ClassIsAbstractException`?
     return nil;
 }

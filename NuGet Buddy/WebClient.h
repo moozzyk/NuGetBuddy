@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^responseCompletionBlock)(NSHTTPURLResponse *response, NSString *data);
-typedef void (^errorCompletionBlock)(NSError *error);
+typedef void (^completionHandler)(NSHTTPURLResponse *httpResponse, NSData *data, NSError *error);
 
 @interface WebClient : NSObject
 
-- (void)get:(NSString*)urlString responseHandler:(responseCompletionBlock)responseHandler errorHandler:(errorCompletionBlock)errorHandler;
+-(void)get:(NSString*)urlString responseHandler:(completionHandler)responseHandler;
 
 @end

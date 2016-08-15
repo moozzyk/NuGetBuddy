@@ -7,7 +7,7 @@
 //
 
 #import "MainViewController.h"
-#include "WebClient.h"
+#import "NuGetClient.h"
 
 @interface MainViewController ()
 @property (weak) IBOutlet NSComboBoxCell *feedsCombo;
@@ -23,15 +23,41 @@
 
 - (IBAction)showPackages:(id)sender {
 
-    /* TODO: remove
+    WebClient *webClient = [[WebClient alloc] init];
+    NuGetClient *nugetClient = [NuGetClient createClient:[self.feedsCombo stringValue] webClient:webClient];
+    [nugetClient getPackages:@"" errorHandler:^(NSString *error, NSString *errorDetails) {}];
+
+
+    /* //TODO: remove
     WebClient *webClient = [[WebClient alloc] init];
     [webClient get:[self.feedsCombo stringValue]
         responseHandler:^void (NSHTTPURLResponse *httpResponse, NSString *data) {
             NSLog(@"response status code: %ld data: %@", (long)[httpResponse statusCode], data);
+            dispatch_async(dispatch_get_main_queue(), ^{
+            });
         }
         errorHandler:^(NSError *error) {
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+
+                NSAlert *alert = [NSAlert alertWithMessageText:@"Error loading NuGet feed." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:[error localizedDescription]];
+
+                [alert setAlertStyle:NSWarningAlertStyle];
+                [alert runModal];
+            });
+
             NSLog(@"error: %@", [error localizedDescription]);
         }];
+     */
+
+    /* dispatch on the UI thread (http://www.localwisdom.com/blog/2013/07/blocks-in-objective-c-performing-asynchronous-urlrequests-using-an-nsoperationqueue/): 
+     dispatch_async(dispatch_get_main_queue(), ^{
+        if (!success) {
+            NSLog(@"Could not set label! %@ %@", error, [error localizedDescription]);
+        } else {
+            [label setText:labelText];
+        }
+     });
      */
 }
 

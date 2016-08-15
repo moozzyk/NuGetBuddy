@@ -10,7 +10,8 @@
 
 @interface NuGetClientv3 : NuGetClient
 
-- (NSArray *)getPackages:(NSString*)filter;
+- (id)initWithFeed: (NSString *)feed webClient:(WebClient *)webClient;
+
 - (NSArray *)getPackageVersions:(NSString*)packageId;
 
 @end
