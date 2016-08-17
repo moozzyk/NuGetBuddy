@@ -13,6 +13,7 @@
 @property (atomic, strong) NSDictionary *serviceIndex;
 
 - (void)ensureIndex:(void(^)())continuation errorHandler:(errorCompletionBlock)errorHandler;
+- (NSString *)getSearchQueryServiceUrl;
 
 @end
 
@@ -52,9 +53,38 @@
     }
 }
 
+- (NSString *)getSearchQueryServiceUrl {
+
+    NSArray *resources = [self.serviceIndex objectForKey:@"resources"];
+    if (!resources) {
+        return nil;
+    }
+
+    NSString *searchQueryServiceUrl;
+
+    for (int i = 0; i < [resources count]; i++) {
+        if([resources[i] isKindOfClass:[NSDictionary class]]) {
+            if ([[resources[i] objectForKey:@"@type"] isEqual: @"SearchQueryService"]) {
+                searchQueryServiceUrl = [resources[i] objectForKey:@"@id"];
+                if (searchQueryServiceUrl) {
+                    break;
+                }
+            }
+        }
+    }
+
+    return searchQueryServiceUrl;
+}
+
 - (NSArray *)getPackages:(NSString*)filter errorHandler:(errorCompletionBlock)errorHandler {
-    [self ensureIndex:^void() { NSLog(@"Completed without error"); }
-         errorHandler:(errorCompletionBlock) errorHandler
+    [self ensureIndex:^void() {
+            NSString *queryServiceUrl = [self getSearchQueryServiceUrl];
+            if (!queryServiceUrl) {
+                errorHandler(@"Unexpected format of service index.", @"Could not get an Url to the query service.");
+                return;
+            }
+        }
+        errorHandler:(errorCompletionBlock) errorHandler
      ];
     return nil;
 }

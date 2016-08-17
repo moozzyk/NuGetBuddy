@@ -34,16 +34,16 @@
             *error = [NSError errorWithDomain:@""
                               code:-1
                               userInfo:@{ NSLocalizedDescriptionKey:@"Something went wrong" }];
-
-            dispatch_semaphore_signal(semaphore);
         }];
 
     NuGetClient *nugetClient = [NuGetClient createClient:@"fakeurl" webClient:webClient];
 
     [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
-            XCTAssertEqualObjects(error, @"Cannot access NuGet feed.");
-            XCTAssertEqualObjects(errorDetails, @"Something went wrong");
-        }];
+        XCTAssertEqualObjects(error, @"Cannot access NuGet feed.");
+        XCTAssertEqualObjects(errorDetails, @"Something went wrong");
+
+        dispatch_semaphore_signal(semaphore);
+    }];
 
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 }
@@ -54,8 +54,6 @@
 
     WebClient *webClient = [[FakeWebClient alloc] initWithHandler:^(NSString *url, NSHTTPURLResponse **response, NSData **data, NSError **error) {
         *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:url] statusCode:404 HTTPVersion: nil headerFields:nil];
-
-        dispatch_semaphore_signal(semaphore);
     }];
 
     NuGetClient *nugetClient = [NuGetClient createClient:@"fakeurl" webClient:webClient];
@@ -63,6 +61,8 @@
     [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
         XCTAssertEqualObjects(error, @"Cannot access NuGet feed.");
         XCTAssertEqualObjects(errorDetails, @"not found");
+
+        dispatch_semaphore_signal(semaphore);
     }];
 
 
@@ -76,8 +76,6 @@
     WebClient *webClient = [[FakeWebClient alloc] initWithHandler:^(NSString *url, NSHTTPURLResponse **response, NSData **data, NSError **error) {
         *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:url] statusCode:200 HTTPVersion: nil headerFields:nil];
         *data = [@"invalid json" dataUsingEncoding:NSUTF8StringEncoding];
-
-        dispatch_semaphore_signal(semaphore);
     }];
 
     NuGetClient *nugetClient = [NuGetClient createClient:@"fakeurl" webClient:webClient];
@@ -85,6 +83,8 @@
     [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
         XCTAssertEqualObjects(error, @"Malformed response.");
         XCTAssertNotNil(errorDetails);
+
+        dispatch_semaphore_signal(semaphore);
     }];
 
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
@@ -97,8 +97,6 @@
     WebClient *webClient = [[FakeWebClient alloc] initWithHandler:^(NSString *url, NSHTTPURLResponse **response, NSData **data, NSError **error) {
         *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:url] statusCode:200 HTTPVersion: nil headerFields:nil];
         *data = [@"[1, 2, 3]" dataUsingEncoding:NSUTF8StringEncoding];
-
-        dispatch_semaphore_signal(semaphore);
     }];
 
     NuGetClient *nugetClient = [NuGetClient createClient:@"fakeurl" webClient:webClient];
@@ -106,9 +104,64 @@
     [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
         XCTAssertEqualObjects(error, @"Unexpected response format.");
         XCTAssertNotNil(errorDetails, @"The format of the service index is invalid");
+
+        dispatch_semaphore_signal(semaphore);
     }];
 
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+}
+
+- (void)testThatErrorInvokedIfServiceIndexDoesNotContainSearchQueryServiceUrl {
+
+    NSString *indexWithoutResources = @"{ \"version\": \"3.0.0-beta.1\" }";
+    NSString *indexWithoutQueryService =
+        @"{ \
+            \"version\": \"3.0.0-beta.1\", \
+            \"resources\": [ \
+                { \
+                    \"@id\": \"https://api-v2v3search-0.nuget.org/autocomplete\", \
+                    \"@type\": \"SearchAutocompleteService\", \
+                    \"comment\": \"Autocomplete endpoint of NuGet Search service (primary)\" \
+                }, \
+            ],\
+         }";
+
+    NSString *indexWithoutQueryServiceUrl =
+    @"{ \
+        \"version\": \"3.0.0-beta.1\", \
+        \"resources\": [ \
+            { \
+                \"@type\": \"SearchQueryService\", \
+                \"comment\": \"Query endpoint of NuGet Search service (primary)\" \
+            }, \
+        ],\
+    }";
+
+    NSArray *serviceIndices = [[NSArray alloc] initWithObjects:indexWithoutResources, indexWithoutQueryService, indexWithoutQueryServiceUrl, nil];
+
+    for (int i = 0; i < [serviceIndices count]; i++) {
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
+        WebClient *webClient = [[FakeWebClient alloc] initWithHandler:^(NSString *url, NSHTTPURLResponse **response, NSData **data, NSError **error) {
+
+            if ([url containsString:@"index.json"]) {
+                *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:url] statusCode:200 HTTPVersion: nil headerFields:nil];
+                *data = [serviceIndices[i] dataUsingEncoding:NSUTF8StringEncoding];
+            } else {
+                *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:url] statusCode:404 HTTPVersion: nil headerFields:nil];
+            }
+        }];
+
+        NuGetClient *nugetClient = [NuGetClient createClient:@"http://nuget/v3/index.json" webClient:webClient];
+
+        [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
+            XCTAssertEqualObjects(error, @"Unexpected format of service index.");
+            XCTAssertNotNil(errorDetails, @"Could not get an Url to the query service.");
+            dispatch_semaphore_signal(semaphore);
+        }];
+
+        dispatch_semaphore_wait(semaphore, 1000);
+    }
 }
 
 - (void)DISABLED_testPerformanceExample {
@@ -118,4 +171,34 @@
     }];
 }
 
+
 @end
+
+
+     /*
+    NSString *serviceIndex =
+    @"{ \
+        \"version\": \"3.0.0-beta.1\", \
+        \"resources\": [ \
+            { \
+                \"@id\": \"https://api-v2v3search-0.nuget.org/query\", \
+                \"@type\": \"SearchQueryService\", \
+                \"comment\": \"Query endpoint of NuGet Search service (primary)\" \
+            }, \
+            { \
+                \"@id\": \"https://api-v2v3search-1.nuget.org/query\", \
+                \"@type\": \"SearchQueryService\", \
+                \"comment\": \"Query endpoint of NuGet Search service (secondary)\" \
+            }, \
+            { \
+                \"@id\": \"https://api-v2v3search-0.nuget.org/autocomplete\", \
+                \"@type\": \"SearchAutocompleteService\", \
+                \"comment\": \"Autocomplete endpoint of NuGet Search service (primary)\" \
+            }, \
+        ], \
+        \"@context\": { \
+            \"@vocab\": \"http://schema.nuget.org/services#\", \
+            \"comment\": \"http://www.w3.org/2000/01/rdf-schema#comment\" \
+        } \
+    }";*/
+
