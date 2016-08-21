@@ -88,7 +88,20 @@
 
                 if (error || httpResponse.statusCode != 200) {
                     errorHandler(@"Cannot read NuGet packages.", error ? error.localizedDescription : [NSHTTPURLResponse localizedStringForStatusCode:httpResponse.statusCode]);
-                } else { 
+                } else {
+                    NSError *parseError = nil;
+                    id packageList = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+
+                    if (parseError) {
+                        errorHandler(@"Malformed package list response.", parseError.localizedDescription);
+                        return;
+                    }
+
+                    if(![packageList isKindOfClass:[NSDictionary class]]) {
+                        errorHandler(@"Unexpected packate list format.", @"The format of the package list is invalid.");
+                        return;
+                    }
+
                 }
             }];
 

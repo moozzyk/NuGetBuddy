@@ -241,6 +241,86 @@
 
 }
 
+- (void) testThatErrorInvokedIfPackageListIsNotValidJSON {
+    NSString *serviceIndex =
+    @"{ \
+        \"version\": \"3.0.0-beta.1\", \
+        \"resources\": [ \
+            { \
+                \"@id\": \"https://api-v2v3search-0.nuget.org/query\", \
+                \"@type\": \"SearchQueryService\", \
+                \"comment\": \"Query endpoint of NuGet Search service (primary)\" \
+            }, \
+        ] \
+    }";
+
+    NSString *packageList = @"invalid JSON";
+
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
+    WebClient *webClient = [[FakeWebClient alloc] initWithHandler:^(NSString *url, NSHTTPURLResponse **response, NSData **data, NSError **error) {
+
+        *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:url] statusCode:200 HTTPVersion: nil headerFields:nil];
+
+        if ([url containsString:@"index.json"]) {
+            *data = [serviceIndex dataUsingEncoding:NSUTF8StringEncoding];
+        } else {
+
+            *data = [packageList dataUsingEncoding:NSUTF8StringEncoding];
+        }
+    }];
+
+    NuGetClient *nugetClient = [NuGetClient createClient:@"http://nuget/v3/index.json" webClient:webClient];
+
+    [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
+        XCTAssertEqualObjects(error, @"Malformed package list response.");
+        XCTAssertNotNil(errorDetails);
+        dispatch_semaphore_signal(semaphore);
+    }];
+
+    dispatch_semaphore_wait(semaphore, 1000);
+}
+
+- (void) testThatErrorInvokedIfPackageListIsDictionary {
+    NSString *serviceIndex =
+    @"{ \
+        \"version\": \"3.0.0-beta.1\", \
+        \"resources\": [ \
+            { \
+                \"@id\": \"https://api-v2v3search-0.nuget.org/query\", \
+                \"@type\": \"SearchQueryService\", \
+                \"comment\": \"Query endpoint of NuGet Search service (primary)\" \
+            }, \
+        ] \
+    }";
+
+    NSString *packageList = @"[1, 2, 3]";
+
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
+    WebClient *webClient = [[FakeWebClient alloc] initWithHandler:^(NSString *url, NSHTTPURLResponse **response, NSData **data, NSError **error) {
+
+        *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:url] statusCode:200 HTTPVersion: nil headerFields:nil];
+
+        if ([url containsString:@"index.json"]) {
+            *data = [serviceIndex dataUsingEncoding:NSUTF8StringEncoding];
+        } else {
+
+            *data = [packageList dataUsingEncoding:NSUTF8StringEncoding];
+        }
+    }];
+
+    NuGetClient *nugetClient = [NuGetClient createClient:@"http://nuget/v3/index.json" webClient:webClient];
+
+    [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
+        XCTAssertEqualObjects(error, @"Unexpected packate list format.");
+        XCTAssertEqualObjects(errorDetails, @"The format of the package list is invalid.");
+        dispatch_semaphore_signal(semaphore);
+    }];
+
+    dispatch_semaphore_wait(semaphore, 1000);
+}
+
 
 - (void)DISABLED_testPerformanceExample {
     // This is an example of a performance test case.
@@ -248,7 +328,6 @@
         // Put the code you want to measure the time of here.
     }];
 }
-
 
 @end
 

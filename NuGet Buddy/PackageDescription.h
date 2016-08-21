@@ -11,9 +11,9 @@
 @interface PackageDescription : NSObject
 
 @property (readonly, strong) NSString *packageId;
-@property (readonly, strong) NSString *name;
 @property (readonly, strong) NSString *version;
+@property (readonly, strong) NSArray *authors;
 
-- (id)initPackage:(NSString*)packageId name:(NSString*)name version:(NSString *)version;
+- (id)initPackage:(NSString*)packageId version:(NSString *)version authors:(NSArray *)authors;
 
 @end
