@@ -26,7 +26,7 @@
     [super tearDown];
 }
 
-- (void)testThatErrorsHandlerInvokedIfServiceIndexFails {
+- (void)testThatErrorsHandlerInvokedIfGettingServiceIndexFails {
 
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
 
@@ -103,7 +103,7 @@
 
     [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
         XCTAssertEqualObjects(error, @"Unexpected response format.");
-        XCTAssertNotNil(errorDetails, @"The format of the service index is invalid");
+        XCTAssertEqualObjects(errorDetails, @"The format of the service index is invalid.");
 
         dispatch_semaphore_signal(semaphore);
     }];
@@ -156,13 +156,91 @@
 
         [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
             XCTAssertEqualObjects(error, @"Unexpected format of service index.");
-            XCTAssertNotNil(errorDetails, @"Could not get an Url to the query service.");
+            XCTAssertEqualObjects(errorDetails, @"Could not get an Url to the query service.");
             dispatch_semaphore_signal(semaphore);
         }];
 
         dispatch_semaphore_wait(semaphore, 1000);
     }
 }
+
+- (void)testThatErrorInvokedIfGettingServiceIndexFails {
+
+    NSString *serviceIndex =
+    @"{ \
+        \"version\": \"3.0.0-beta.1\", \
+        \"resources\": [ \
+            { \
+                \"@id\": \"https://api-v2v3search-0.nuget.org/query\", \
+                \"@type\": \"SearchQueryService\", \
+                \"comment\": \"Query endpoint of NuGet Search service (primary)\" \
+            }, \
+        ] \
+    }";
+
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
+    WebClient *webClient = [[FakeWebClient alloc] initWithHandler:^(NSString *url, NSHTTPURLResponse **response, NSData **data, NSError **error) {
+
+        if ([url containsString:@"index.json"]) {
+            *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:url] statusCode:200 HTTPVersion: nil headerFields:nil];
+            *data = [serviceIndex dataUsingEncoding:NSUTF8StringEncoding];
+        } else {
+            *error = [NSError errorWithDomain:@""
+                            code:-1
+                            userInfo:@{ NSLocalizedDescriptionKey:@"Something went wrong" }];
+        }
+    }];
+
+    NuGetClient *nugetClient = [NuGetClient createClient:@"http://nuget/v3/index.json" webClient:webClient];
+
+    [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
+        XCTAssertEqualObjects(error, @"Cannot read NuGet packages.");
+        XCTAssertEqualObjects(errorDetails, @"Something went wrong");
+        dispatch_semaphore_signal(semaphore);
+    }];
+
+    dispatch_semaphore_wait(semaphore, 1000);
+}
+
+- (void)testThatErrorInvokedIfGettingServiceIndexReturnStatusCodeNotOK {
+
+    NSString *serviceIndex =
+    @"{ \
+        \"version\": \"3.0.0-beta.1\", \
+        \"resources\": [ \
+            { \
+                \"@id\": \"https://api-v2v3search-0.nuget.org/query\", \
+                \"@type\": \"SearchQueryService\", \
+                \"comment\": \"Query endpoint of NuGet Search service (primary)\" \
+            }, \
+        ] \
+    }";
+
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
+    WebClient *webClient = [[FakeWebClient alloc] initWithHandler:^(NSString *url, NSHTTPURLResponse **response, NSData **data, NSError **error) {
+
+        if ([url containsString:@"index.json"]) {
+            *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:url] statusCode:200 HTTPVersion: nil headerFields:nil];
+            *data = [serviceIndex dataUsingEncoding:NSUTF8StringEncoding];
+        } else {
+            *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:url] statusCode:404 HTTPVersion: nil headerFields:nil];
+        }
+    }];
+
+    NuGetClient *nugetClient = [NuGetClient createClient:@"http://nuget/v3/index.json" webClient:webClient];
+
+    [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
+        XCTAssertEqualObjects(error, @"Cannot read NuGet packages.");
+        XCTAssertEqualObjects(errorDetails, @"not found");
+        dispatch_semaphore_signal(semaphore);
+    }];
+
+    dispatch_semaphore_wait(semaphore, 1000);
+
+}
+
 
 - (void)DISABLED_testPerformanceExample {
     // This is an example of a performance test case.

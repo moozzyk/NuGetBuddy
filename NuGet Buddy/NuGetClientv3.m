@@ -83,9 +83,19 @@
                 errorHandler(@"Unexpected format of service index.", @"Could not get an Url to the query service.");
                 return;
             }
+
+            [self.webClient get:queryServiceUrl responseHandler:^void(NSHTTPURLResponse *httpResponse, NSData *data, NSError *error) {
+
+                if (error || httpResponse.statusCode != 200) {
+                    errorHandler(@"Cannot read NuGet packages.", error ? error.localizedDescription : [NSHTTPURLResponse localizedStringForStatusCode:httpResponse.statusCode]);
+                } else { 
+                }
+            }];
+
         }
         errorHandler:(errorCompletionBlock) errorHandler
      ];
+
     return nil;
 }
 
