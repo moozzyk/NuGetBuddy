@@ -38,7 +38,7 @@
 
     NuGetClient *nugetClient = [NuGetClient createClient:@"fakeurl" webClient:webClient];
 
-    [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
+    [nugetClient getPackages: @"" successHandler:^(NSArray *packages){} errorHandler:^(NSString *error, NSString *errorDetails) {
         XCTAssertEqualObjects(error, @"Cannot access NuGet feed.");
         XCTAssertEqualObjects(errorDetails, @"Something went wrong");
 
@@ -58,7 +58,7 @@
 
     NuGetClient *nugetClient = [NuGetClient createClient:@"fakeurl" webClient:webClient];
 
-    [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
+    [nugetClient getPackages: @"" successHandler:^(NSArray *packages){} errorHandler:^(NSString *error, NSString *errorDetails) {
         XCTAssertEqualObjects(error, @"Cannot access NuGet feed.");
         XCTAssertEqualObjects(errorDetails, @"not found");
 
@@ -80,7 +80,7 @@
 
     NuGetClient *nugetClient = [NuGetClient createClient:@"fakeurl" webClient:webClient];
 
-    [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
+    [nugetClient getPackages: @"" successHandler:^(NSArray *packages){} errorHandler:^(NSString *error, NSString *errorDetails) {
         XCTAssertEqualObjects(error, @"Malformed response.");
         XCTAssertNotNil(errorDetails);
 
@@ -101,7 +101,7 @@
 
     NuGetClient *nugetClient = [NuGetClient createClient:@"fakeurl" webClient:webClient];
 
-    [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
+    [nugetClient getPackages: @"" successHandler:^(NSArray *packages){} errorHandler:^(NSString *error, NSString *errorDetails) {
         XCTAssertEqualObjects(error, @"Unexpected response format.");
         XCTAssertEqualObjects(errorDetails, @"The format of the service index is invalid.");
 
@@ -154,7 +154,7 @@
 
         NuGetClient *nugetClient = [NuGetClient createClient:@"http://nuget/v3/index.json" webClient:webClient];
 
-        [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
+        [nugetClient getPackages: @"" successHandler:^(NSArray *packages){} errorHandler:^(NSString *error, NSString *errorDetails) {
             XCTAssertEqualObjects(error, @"Unexpected format of service index.");
             XCTAssertEqualObjects(errorDetails, @"Could not get an Url to the query service.");
             dispatch_semaphore_signal(semaphore);
@@ -194,7 +194,7 @@
 
     NuGetClient *nugetClient = [NuGetClient createClient:@"http://nuget/v3/index.json" webClient:webClient];
 
-    [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
+    [nugetClient getPackages: @"" successHandler:^(NSArray *packages){} errorHandler:^(NSString *error, NSString *errorDetails) {
         XCTAssertEqualObjects(error, @"Cannot read NuGet packages.");
         XCTAssertEqualObjects(errorDetails, @"Something went wrong");
         dispatch_semaphore_signal(semaphore);
@@ -231,7 +231,7 @@
 
     NuGetClient *nugetClient = [NuGetClient createClient:@"http://nuget/v3/index.json" webClient:webClient];
 
-    [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
+    [nugetClient getPackages: @"" successHandler:^(NSArray *packages) {} errorHandler:^(NSString *error, NSString *errorDetails) {
         XCTAssertEqualObjects(error, @"Cannot read NuGet packages.");
         XCTAssertEqualObjects(errorDetails, @"not found");
         dispatch_semaphore_signal(semaphore);
@@ -272,7 +272,7 @@
 
     NuGetClient *nugetClient = [NuGetClient createClient:@"http://nuget/v3/index.json" webClient:webClient];
 
-    [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
+    [nugetClient getPackages: @"" successHandler:^(NSArray *packages){} errorHandler:^(NSString *error, NSString *errorDetails) {
         XCTAssertEqualObjects(error, @"Malformed package list response.");
         XCTAssertNotNil(errorDetails);
         dispatch_semaphore_signal(semaphore);
@@ -312,7 +312,7 @@
 
     NuGetClient *nugetClient = [NuGetClient createClient:@"http://nuget/v3/index.json" webClient:webClient];
 
-    [nugetClient getPackages: @"" errorHandler:^(NSString *error, NSString *errorDetails) {
+    [nugetClient getPackages: @"" successHandler:^(NSArray *packages){} errorHandler:^(NSString *error, NSString *errorDetails) {
         XCTAssertEqualObjects(error, @"Unexpected packate list format.");
         XCTAssertEqualObjects(errorDetails, @"The format of the package list is invalid.");
         dispatch_semaphore_signal(semaphore);
@@ -321,6 +321,79 @@
     dispatch_semaphore_wait(semaphore, 1000);
 }
 
+- (void) testThatPackagesPassedToSuccessHandler {
+    NSString *serviceIndex =
+    @"{ \
+        \"version\": \"3.0.0-beta.1\", \
+        \"resources\": [ \
+            { \
+                \"@id\": \"https://api-v2v3search-0.nuget.org/query\", \
+                \"@type\": \"SearchQueryService\", \
+                \"comment\": \"Query endpoint of NuGet Search service (primary)\" \
+            }, \
+        ] \
+    }";
+
+    NSString *packageList =
+    @"{ \
+            \"data\": [ \
+                { \
+                    \"id\": \"'Allo 'Allo\", \
+                    \"version\": \"5.8.1945\", \
+                    \"authors\": [ \
+                        \"Jeremy Lloyd\", \
+                        \"David Croft\" \
+                    ] \
+                }, \
+                {\
+                    \"id\": \"Mr. Bean\", \
+                    \"version\": \"1.0.0-beta1\", \
+                    \"authors\": [ \
+                        \"Rowan Atkinson\" \
+                    ] \
+                }, \
+            ] \
+        }";
+
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
+    WebClient *webClient = [[FakeWebClient alloc] initWithHandler:^(NSString *url, NSHTTPURLResponse **response, NSData **data, NSError **error) {
+
+        *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:url] statusCode:200 HTTPVersion: nil headerFields:nil];
+
+        if ([url containsString:@"index.json"]) {
+            *data = [serviceIndex dataUsingEncoding:NSUTF8StringEncoding];
+        } else {
+
+            *data = [packageList dataUsingEncoding:NSUTF8StringEncoding];
+        }
+    }];
+
+    NuGetClient *nugetClient = [NuGetClient createClient:@"http://nuget/v3/index.json" webClient:webClient];
+
+    [nugetClient getPackages: @""
+        successHandler:^(NSArray *packages){
+            XCTAssertEqual(2, [packages count]);
+            PackageDescription *package1 = packages[0];
+            XCTAssertEqualObjects(package1.packageId, @"'Allo 'Allo");
+            XCTAssertEqualObjects(package1.version, @"5.8.1945");
+            NSArray *authors = @[@"Jeremy Lloyd", @"David Croft"];
+            XCTAssertEqualObjects(package1.authors, authors);
+
+            PackageDescription *package2 = packages[1];
+            XCTAssertEqualObjects(package2.packageId, @"Mr. Bean");
+            XCTAssertEqualObjects(package2.version, @"1.0.0-beta1");
+            authors = @[@"Rowan Atkinson"];
+            XCTAssertEqualObjects(package2.authors, authors);
+        }
+        errorHandler:^(NSString *error, NSString *errorDetails) {
+            XCTAssertTrue(false);
+            dispatch_semaphore_signal(semaphore);
+        }];
+
+    dispatch_semaphore_wait(semaphore, 1000);
+
+}
 
 - (void)DISABLED_testPerformanceExample {
     // This is an example of a performance test case.

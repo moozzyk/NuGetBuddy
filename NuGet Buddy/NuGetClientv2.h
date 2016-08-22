@@ -10,6 +10,4 @@
 
 @interface NuGetClientv2 : NuGetClient
 
-- (NSArray *)getPackageVersions:(NSString*)packageId;
-
 @end

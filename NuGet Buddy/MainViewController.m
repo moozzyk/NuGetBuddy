@@ -25,7 +25,16 @@
 
     WebClient *webClient = [[WebClient alloc] init];
     NuGetClient *nugetClient = [NuGetClient createClient:[self.feedsCombo stringValue] webClient:webClient];
-    [nugetClient getPackages:@"" errorHandler:^(NSString *error, NSString *errorDetails) {}];
+    [nugetClient getPackages:@""
+        successHandler:^(NSArray *packages) {
+            for (PackageDescription *p in packages) {
+                NSLog(@"%@ %@ %@", p.packageId, p.version, p.authors);
+            }
+        }
+        errorHandler:^(NSString *error, NSString *errorDetails) {
+            NSLog(@"%@ %@", error, errorDetails);
+        }
+     ];
 
 
     /* //TODO: remove

@@ -14,6 +14,7 @@
 
 - (void)ensureIndex:(void(^)())continuation errorHandler:(errorCompletionBlock)errorHandler;
 - (NSString *)getSearchQueryServiceUrl;
++ (NSArray *)parsePackages:(NSDictionary *)packagesJson;
 
 @end
 
@@ -76,7 +77,7 @@
     return searchQueryServiceUrl;
 }
 
-- (NSArray *)getPackages:(NSString*)filter errorHandler:(errorCompletionBlock)errorHandler {
+- (void)getPackages:(NSString*)filter successHandler:(packagesCompletionBlock)successHandler errorHandler:(errorCompletionBlock)errorHandler {
     [self ensureIndex:^void() {
             NSString *queryServiceUrl = [self getSearchQueryServiceUrl];
             if (!queryServiceUrl) {
@@ -90,30 +91,50 @@
                     errorHandler(@"Cannot read NuGet packages.", error ? error.localizedDescription : [NSHTTPURLResponse localizedStringForStatusCode:httpResponse.statusCode]);
                 } else {
                     NSError *parseError = nil;
-                    id packageList = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+                    id packageListJson = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
 
                     if (parseError) {
                         errorHandler(@"Malformed package list response.", parseError.localizedDescription);
                         return;
                     }
 
-                    if(![packageList isKindOfClass:[NSDictionary class]]) {
+                    if(![packageListJson isKindOfClass:[NSDictionary class]]) {
                         errorHandler(@"Unexpected packate list format.", @"The format of the package list is invalid.");
                         return;
                     }
 
+                    NSArray *packages = [NuGetClientv3 parsePackages:packageListJson];
+                    successHandler(packages);
                 }
             }];
 
         }
         errorHandler:(errorCompletionBlock) errorHandler
      ];
-
-    return nil;
 }
 
-- (NSArray *)getPackageVersions:(NSString *)packageId {
-    return nil;
++ (NSArray *)parsePackages:(NSDictionary *)packagesJson {
+
+    id data = [packagesJson objectForKey:@"data"];
+    if (!data || ![data isKindOfClass:[NSArray class]]) {
+        NSLog(@"No `data` or `data` not an NSArray");
+        return [[NSArray alloc] init];
+    }
+
+    NSMutableArray *packages = [[NSMutableArray alloc] initWithCapacity: [data count]];
+
+    for (id package in data)
+    {
+        if ([package isKindOfClass:[NSDictionary class]]) {
+            NSString *packageId = [package objectForKey:@"id"];
+            NSString *version = [package objectForKey:@"version"];
+            NSArray *authors = [package objectForKey:@"authors"];
+
+            [packages addObject:[[PackageDescription alloc] initPackage:packageId version:version authors:authors]];
+        }
+    }
+
+    return packages;
 }
 
 @end

@@ -12,6 +12,4 @@
 
 - (id)initWithFeed: (NSString *)feed webClient:(WebClient *)webClient;
 
-- (NSArray *)getPackageVersions:(NSString*)packageId;
-
 @end

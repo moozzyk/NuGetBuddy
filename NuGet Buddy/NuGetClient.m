@@ -23,9 +23,8 @@
     return [[NuGetClientv3 alloc] initWithFeed:feed webClient:webClient];
 }
 
-- (NSArray *)getPackages:(NSString*)filter errorHandler:(errorCompletionBlock)errorHandler {
+- (void)getPackages:(NSString*)filter successHandler:(packagesCompletionBlock)successHandler errorHandler:(errorCompletionBlock)errorHandler {
     // TODO: throw 'NotImpementedException/ClassIsAbstractException`?
-    return nil;
 }
 
 - (NSArray *)getPackageVersions:(NSString *)packageId {

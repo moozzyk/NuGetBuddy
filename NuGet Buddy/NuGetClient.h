@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "WebClient.h"
+#import "PackageDescription.h"
 
 typedef void (^errorCompletionBlock)(NSString *error, NSString *errorDetails);
-typedef void (^responseCompletionBlock)(NSHTTPURLResponse *httpResponse, NSString *content);
+typedef void (^packagesCompletionBlock)(NSArray *packages);
 
 @interface NuGetClient : NSObject
 
@@ -22,7 +23,7 @@ typedef void (^responseCompletionBlock)(NSHTTPURLResponse *httpResponse, NSStrin
 + (NuGetClient *) createClient:(NSString *)feed webClient:(WebClient *)webClient;
 
 // TODO: these should be async
-- (NSArray *)getPackages:(NSString*)filter errorHandler:(errorCompletionBlock)errorHandler;
+- (void)getPackages:(NSString*)filter successHandler:(packagesCompletionBlock)successHandler errorHandler:(errorCompletionBlock)errorHandler;
 - (NSArray *)getPackageVersions:(NSString*)packageId;
 
 @end
