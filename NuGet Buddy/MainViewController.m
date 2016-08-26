@@ -33,6 +33,11 @@
         }
         errorHandler:^(NSString *error, NSString *errorDetails) {
             NSLog(@"%@ %@", error, errorDetails);
+            NSAlert *alert = [NSAlert alertWithMessageText:error defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"%@", errorDetails];
+
+            [alert setAlertStyle:NSWarningAlertStyle];
+            [alert runModal];
+
         }
      ];
 
