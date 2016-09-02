@@ -11,6 +11,8 @@
 
 @interface MainViewController ()
 @property (weak) IBOutlet NSComboBoxCell *feedsCombo;
+@property (weak) IBOutlet NSTableView *packagesView;
+@property (atomic, strong) NSArray *packageDescriptions;
 @end
 
 @implementation MainViewController
@@ -30,6 +32,11 @@
             for (PackageDescription *p in packages) {
                 NSLog(@"%@ %@ %@", p.packageId, p.version, p.authors);
             }
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.packageDescriptions = packages;
+                [self.packagesView reloadData];
+            });
         }
         errorHandler:^(NSString *error, NSString *errorDetails) {
             NSLog(@"%@ %@", error, errorDetails);
@@ -73,6 +80,30 @@
         }
      });
      */
+}
+
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    NSTableCellView *cellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+
+    if([tableColumn.identifier isEqualToString:@"PackageId"]) {
+        PackageDescription *packageDescription = [self.packageDescriptions objectAtIndex:row];
+        cellView.textField.stringValue = packageDescription.packageId;
+    }
+    else if([tableColumn.identifier isEqualToString:@"Version"]) {
+        PackageDescription *packageDescription = [self.packageDescriptions objectAtIndex:row];
+        cellView.textField.stringValue = packageDescription.version;
+    }
+    else if([tableColumn.identifier isEqualToString:@"Authors"]) {
+        PackageDescription *packageDescription = [self.packageDescriptions objectAtIndex:row];
+        NSString *authors = [packageDescription.authors componentsJoinedByString:@", "];
+        cellView.textField.stringValue = authors;
+    }
+
+    return cellView;
+}
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+    return [self.packageDescriptions count];
 }
 
 @end
