@@ -338,15 +338,25 @@
     @"{ \
             \"data\": [ \
                 { \
-                    \"id\": \"'Allo 'Allo\", \
-                    \"version\": \"5.8.1945\", \
+                    \"@id\": \"'Allo 'Allo\", \
+                    \"version\": \"8.5.1945\", \
                     \"authors\": [ \
                         \"Jeremy Lloyd\", \
                         \"David Croft\" \
+                    ], \
+                    \"versions\": [\
+                        { \
+                            \"version\": \"6.6.1944\", \
+                            \"@id\": \"version-id-link-6.6.1944\" \
+                        }, \
+                        { \
+                            \"version\": \"8.5.1944\", \
+                            \"@id\": \"version-id-link-8.5.1944\" \
+                        } \
                     ] \
                 }, \
                 {\
-                    \"id\": \"Mr. Bean\", \
+                    \"@id\": \"Mr. Bean\", \
                     \"version\": \"1.0.0-beta1\", \
                     \"authors\": [ \
                         \"Rowan Atkinson\" \
@@ -376,15 +386,24 @@
             XCTAssertEqual(2, [packages count]);
             PackageDescription *package1 = packages[0];
             XCTAssertEqualObjects(package1.packageId, @"'Allo 'Allo");
-            XCTAssertEqualObjects(package1.version, @"5.8.1945");
+            XCTAssertEqualObjects(package1.version, @"8.5.1945");
             NSArray *authors = @[@"Jeremy Lloyd", @"David Croft"];
             XCTAssertEqualObjects(package1.authors, authors);
+            XCTAssertEqual(package1.versions.count, 2);
+
+            PackageVersion *version1 = package1.versions[0];
+            XCTAssertEqualObjects(version1.version, @"6.6.1944");
+            XCTAssertEqualObjects(version1.versionId, @"version-id-link-6.6.1944");
+            PackageVersion *version2 = package1.versions[1];
+            XCTAssertEqualObjects(version2.version, @"8.5.1944");
+            XCTAssertEqualObjects(version2.versionId, @"version-id-link-8.5.1944");
 
             PackageDescription *package2 = packages[1];
             XCTAssertEqualObjects(package2.packageId, @"Mr. Bean");
             XCTAssertEqualObjects(package2.version, @"1.0.0-beta1");
             authors = @[@"Rowan Atkinson"];
             XCTAssertEqualObjects(package2.authors, authors);
+            XCTAssertEqual(package2.versions.count, 0);
         }
         errorHandler:^(NSString *error, NSString *errorDetails) {
             XCTAssertTrue(false);

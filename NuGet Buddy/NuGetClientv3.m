@@ -137,15 +137,27 @@
     for (id package in data)
     {
         if ([package isKindOfClass:[NSDictionary class]]) {
-            NSString *packageId = [package objectForKey:@"id"];
+            NSString *packageId = [package objectForKey:@"@id"];
             NSString *version = [package objectForKey:@"version"];
             NSArray *authors = [package objectForKey:@"authors"];
+            NSArray *packageVersions = [NuGetClientv3 parsePackageVersions:[package objectForKey:@"versions"]];
 
-            [packages addObject:[[PackageDescription alloc] initPackage:packageId version:version authors:authors]];
+            [packages addObject:[[PackageDescription alloc] initPackage:packageId version:version authors:authors versions:packageVersions]];
         }
     }
 
     return packages;
+}
+
++ (NSArray *)parsePackageVersions:(NSArray *)packageVersionsJson {
+    NSMutableArray *versions = [[NSMutableArray alloc] initWithCapacity:[packageVersionsJson count]];
+
+    for (NSDictionary *versionInfo in packageVersionsJson)
+    {
+        [versions addObject:[[PackageVersion alloc] init:[versionInfo objectForKey:@"@id"] version:[versionInfo objectForKey:@"version"]]];
+    }
+
+    return versions;
 }
 
 @end

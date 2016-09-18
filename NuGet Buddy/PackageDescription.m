@@ -10,12 +10,12 @@
 
 @implementation PackageDescription
 
-- (id)initPackage:(NSString*)packageId version:(NSString *)version authors:(NSArray *)authors {
-    //TODO: throw/assert on null?
+- (id)initPackage:(NSString*)packageId version:(NSString *)version authors:(NSArray *)authors versions:(NSArray *)versions{
     if ((self = [super init])) {
         _packageId = packageId;
         _version = version;
         _authors = authors;
+        _versions = versions;
     }
     return self;
 }

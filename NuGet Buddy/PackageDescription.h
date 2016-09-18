@@ -7,13 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "PackageVersion.h"
 
 @interface PackageDescription : NSObject
 
 @property (readonly, strong) NSString *packageId;
 @property (readonly, strong) NSString *version;
 @property (readonly, strong) NSArray *authors;
+@property (readonly, strong) NSArray *versions;
 
-- (id)initPackage:(NSString*)packageId version:(NSString *)version authors:(NSArray *)authors;
+- (id)initPackage:(NSString*)packageId version:(NSString *)version authors:(NSArray *)authors versions:(NSArray *)versions;
 
 @end
