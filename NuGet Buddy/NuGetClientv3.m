@@ -137,7 +137,7 @@
     for (id package in data)
     {
         if ([package isKindOfClass:[NSDictionary class]]) {
-            NSString *packageId = [package objectForKey:@"@id"];
+            NSString *packageId = [package objectForKey:@"id"];
             NSString *version = [package objectForKey:@"version"];
             NSArray *authors = [package objectForKey:@"authors"];
             NSArray *packageVersions = [NuGetClientv3 parsePackageVersions:[package objectForKey:@"versions"]];

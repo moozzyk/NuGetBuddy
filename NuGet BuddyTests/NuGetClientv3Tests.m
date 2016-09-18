@@ -338,7 +338,7 @@
     @"{ \
             \"data\": [ \
                 { \
-                    \"@id\": \"'Allo 'Allo\", \
+                    \"id\": \"'Allo 'Allo\", \
                     \"version\": \"8.5.1945\", \
                     \"authors\": [ \
                         \"Jeremy Lloyd\", \
@@ -356,7 +356,7 @@
                     ] \
                 }, \
                 {\
-                    \"@id\": \"Mr. Bean\", \
+                    \"id\": \"Mr. Bean\", \
                     \"version\": \"1.0.0-beta1\", \
                     \"authors\": [ \
                         \"Rowan Atkinson\" \
