@@ -313,7 +313,7 @@
     NuGetClient *nugetClient = [NuGetClient createClient:@"http://nuget/v3/index.json" webClient:webClient];
 
     [nugetClient getPackages: @"" successHandler:^(NSArray *packages){} errorHandler:^(NSString *error, NSString *errorDetails) {
-        XCTAssertEqualObjects(error, @"Unexpected packate list format.");
+        XCTAssertEqualObjects(error, @"Unexpected package list format.");
         XCTAssertEqualObjects(errorDetails, @"The format of the package list is invalid.");
         dispatch_semaphore_signal(semaphore);
     }];
@@ -394,6 +394,48 @@
     dispatch_semaphore_wait(semaphore, 1000);
 
 }
+
+- (void)testThatFilterIsAppendedToQueryStringIfPresent {
+
+    NSString *serviceIndex =
+    @"{ \
+        \"version\": \"3.0.0-beta.1\", \
+        \"resources\": [ \
+            { \
+                \"@id\": \"https://api-v2v3search-0.nuget.org/query\", \
+                \"@type\": \"SearchQueryService\", \
+                \"comment\": \"Query endpoint of NuGet Search service (primary)\" \
+            }, \
+        ] \
+    }";
+
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
+    __block NSString *queryUrl;
+
+    WebClient *webClient = [[FakeWebClient alloc] initWithHandler:^(NSString *url, NSHTTPURLResponse **response, NSData **data, NSError **error) {
+
+        if ([url containsString:@"index.json"]) {
+            *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:url] statusCode:200 HTTPVersion: nil headerFields:nil];
+            *data = [serviceIndex dataUsingEncoding:NSUTF8StringEncoding];
+        } else {
+            *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:url] statusCode:404 HTTPVersion: nil headerFields:nil];
+
+            queryUrl = url;
+
+            dispatch_semaphore_signal(semaphore);
+        }
+    }];
+
+    NuGetClient *nugetClient = [NuGetClient createClient:@"http://nuget/v3/index.json" webClient:webClient];
+
+    [nugetClient getPackages: @"moozzyk" successHandler:^(NSArray *packages) {} errorHandler:^(NSString *error, NSString *errorDetails) { }];
+
+    long result = dispatch_semaphore_wait(semaphore, 1000);
+    XCTAssertEqual(0, result);
+    XCTAssertEqualObjects(queryUrl, @"https://api-v2v3search-0.nuget.org/query?prerelease=true&q=moozzyk");
+}
+
 
 - (void)DISABLED_testPerformanceExample {
     // This is an example of a performance test case.

@@ -12,6 +12,7 @@
 @interface MainViewController ()
 @property (weak) IBOutlet NSComboBoxCell *feedsCombo;
 @property (weak) IBOutlet NSTableView *packagesView;
+@property (weak) IBOutlet NSSearchField *filter;
 @property (atomic, strong) NSArray *packageDescriptions;
 @end
 
@@ -21,13 +22,13 @@
     [super viewDidLoad];
 
     [self.feedsCombo selectItemAtIndex:0];
+    [self filterPackages:nil];
 }
 
-- (IBAction)showPackages:(id)sender {
-
+- (IBAction)filterPackages:(id)sender {
     WebClient *webClient = [[WebClient alloc] init];
     NuGetClient *nugetClient = [NuGetClient createClient:[self.feedsCombo stringValue] webClient:webClient];
-    [nugetClient getPackages:@""
+    [nugetClient getPackages: [self.filter stringValue]
         successHandler:^(NSArray *packages) {
             for (PackageDescription *p in packages) {
                 NSLog(@"%@ %@ %@", p.packageId, p.version, p.authors);
@@ -106,5 +107,7 @@
     return [self.packageDescriptions count];
 }
 
+- (IBAction)fitlerPackages:(id)sender {
+}
 @end
 

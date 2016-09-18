@@ -79,10 +79,21 @@
 
 - (void)getPackages:(NSString*)filter successHandler:(packagesCompletionBlock)successHandler errorHandler:(errorCompletionBlock)errorHandler {
     [self ensureIndex:^void() {
-            NSString *queryServiceUrl = [self getSearchQueryServiceUrl];
+
+            NSString *tmp = [self getSearchQueryServiceUrl];
+
+            NSMutableString *queryServiceUrl = tmp ? [NSMutableString stringWithString:tmp] : nil;
             if (!queryServiceUrl) {
                 errorHandler(@"Unexpected format of service index.", @"Could not get an Url to the query service.");
                 return;
+            }
+
+            [queryServiceUrl appendString:@"?prerelease=true"];
+
+            if (filter)
+            {
+                [queryServiceUrl appendString: @"&q="];
+                [queryServiceUrl appendString: filter];
             }
 
             [self.webClient get:queryServiceUrl responseHandler:^void(NSHTTPURLResponse *httpResponse, NSData *data, NSError *error) {
@@ -99,7 +110,7 @@
                     }
 
                     if(![packageListJson isKindOfClass:[NSDictionary class]]) {
-                        errorHandler(@"Unexpected packate list format.", @"The format of the package list is invalid.");
+                        errorHandler(@"Unexpected package list format.", @"The format of the package list is invalid.");
                         return;
                     }
 
