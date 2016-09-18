@@ -21,6 +21,7 @@ typedef void (^packagesCompletionBlock)(NSArray *packages);
 - (id)initWithFeed: (NSString *)feed webClient:(WebClient *)webClient;
 
 + (NuGetClient *) createClient:(NSString *)feed webClient:(WebClient *)webClient;
++ (NSString *) URLEncodeString:(NSString *)urlPortion;
 
 // TODO: these should be async
 - (void)getPackages:(NSString*)filter successHandler:(packagesCompletionBlock)successHandler errorHandler:(errorCompletionBlock)errorHandler;

@@ -93,7 +93,7 @@
             if (filter)
             {
                 [queryServiceUrl appendString: @"&q="];
-                [queryServiceUrl appendString: filter];
+                [queryServiceUrl appendString: [NuGetClient URLEncodeString:filter]];
             }
 
             [self.webClient get:queryServiceUrl responseHandler:^void(NSHTTPURLResponse *httpResponse, NSData *data, NSError *error) {

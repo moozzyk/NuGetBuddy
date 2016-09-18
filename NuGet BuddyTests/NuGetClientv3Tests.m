@@ -429,11 +429,11 @@
 
     NuGetClient *nugetClient = [NuGetClient createClient:@"http://nuget/v3/index.json" webClient:webClient];
 
-    [nugetClient getPackages: @"moozzyk" successHandler:^(NSArray *packages) {} errorHandler:^(NSString *error, NSString *errorDetails) { }];
+    [nugetClient getPackages: @"moozzyk test" successHandler:^(NSArray *packages) {} errorHandler:^(NSString *error, NSString *errorDetails) { }];
 
     long result = dispatch_semaphore_wait(semaphore, 1000);
     XCTAssertEqual(0, result);
-    XCTAssertEqualObjects(queryUrl, @"https://api-v2v3search-0.nuget.org/query?prerelease=true&q=moozzyk");
+    XCTAssertEqualObjects(queryUrl, @"https://api-v2v3search-0.nuget.org/query?prerelease=true&q=moozzyk%20test");
 }
 
 

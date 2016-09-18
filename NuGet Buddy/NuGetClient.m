@@ -23,6 +23,25 @@
     return [[NuGetClientv3 alloc] initWithFeed:feed webClient:webClient];
 }
 
++ (NSString *) URLEncodeString:(NSString *)urlPortion {
+    NSMutableString * output = [NSMutableString string];
+
+    for (int i = 0; i < [urlPortion length]; ++i) {
+        const unsigned char thisChar = [urlPortion characterAtIndex:i];
+        if (thisChar == ' '){
+            [output appendString:@"%20"];
+        } else if (thisChar == '.' || thisChar == '-' || thisChar == '_' || thisChar == '~' ||
+                   (thisChar >= 'a' && thisChar <= 'z') ||
+                   (thisChar >= 'A' && thisChar <= 'Z') ||
+                   (thisChar >= '0' && thisChar <= '9')) {
+            [output appendFormat:@"%c", thisChar];
+        } else {
+            [output appendFormat:@"%%%02X", thisChar];
+        }
+    }
+    return output;
+}
+
 - (void)getPackages:(NSString*)filter successHandler:(packagesCompletionBlock)successHandler errorHandler:(errorCompletionBlock)errorHandler {
     // TODO: throw 'NotImpementedException/ClassIsAbstractException`?
 }
