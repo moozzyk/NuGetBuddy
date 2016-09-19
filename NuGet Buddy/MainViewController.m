@@ -12,6 +12,7 @@
 @interface MainViewController ()
 @property (weak) IBOutlet NSComboBoxCell *feedsCombo;
 @property (weak) IBOutlet NSTableView *packagesView;
+@property (weak) IBOutlet NSTableView *packageVersionsView;
 @property (weak) IBOutlet NSSearchField *filter;
 @property (atomic, strong) NSArray *packageDescriptions;
 @end
@@ -45,69 +46,64 @@
 
             [alert setAlertStyle:NSWarningAlertStyle];
             [alert runModal];
-
         }
      ];
+}
 
-
-    /* //TODO: remove
-    WebClient *webClient = [[WebClient alloc] init];
-    [webClient get:[self.feedsCombo stringValue]
-        responseHandler:^void (NSHTTPURLResponse *httpResponse, NSString *data) {
-            NSLog(@"response status code: %ld data: %@", (long)[httpResponse statusCode], data);
-            dispatch_async(dispatch_get_main_queue(), ^{
-            });
-        }
-        errorHandler:^(NSError *error) {
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-
-                NSAlert *alert = [NSAlert alertWithMessageText:@"Error loading NuGet feed." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:[error localizedDescription]];
-
-                [alert setAlertStyle:NSWarningAlertStyle];
-                [alert runModal];
-            });
-
-            NSLog(@"error: %@", [error localizedDescription]);
-        }];
-     */
-
-    /* dispatch on the UI thread (http://www.localwisdom.com/blog/2013/07/blocks-in-objective-c-performing-asynchronous-urlrequests-using-an-nsoperationqueue/): 
-     dispatch_async(dispatch_get_main_queue(), ^{
-        if (!success) {
-            NSLog(@"Could not set label! %@ %@", error, [error localizedDescription]);
-        } else {
-            [label setText:labelText];
-        }
-     });
-     */
+- (IBAction)tableViewSelectionDidChange:(NSNotification *)notification {
+    if (notification.object == self.packagesView) {
+        [self.packageVersionsView reloadData];
+    }
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     NSTableCellView *cellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
 
-    if([tableColumn.identifier isEqualToString:@"PackageId"]) {
-        PackageDescription *packageDescription = [self.packageDescriptions objectAtIndex:row];
-        cellView.textField.stringValue = packageDescription.packageId;
+    if (tableView == self.packagesView) {
+        if([tableColumn.identifier isEqualToString:@"PackageId"]) {
+            PackageDescription *packageDescription = [self.packageDescriptions objectAtIndex:row];
+            cellView.textField.stringValue = packageDescription.packageId;
+        }
+        else if([tableColumn.identifier isEqualToString:@"Version"]) {
+            PackageDescription *packageDescription = [self.packageDescriptions objectAtIndex:row];
+            cellView.textField.stringValue = packageDescription.version;
+        }
+        else if([tableColumn.identifier isEqualToString:@"Authors"]) {
+            PackageDescription *packageDescription = [self.packageDescriptions objectAtIndex:row];
+            NSString *authors = [packageDescription.authors componentsJoinedByString:@", "];
+            cellView.textField.stringValue = authors;
+        }
     }
-    else if([tableColumn.identifier isEqualToString:@"Version"]) {
-        PackageDescription *packageDescription = [self.packageDescriptions objectAtIndex:row];
-        cellView.textField.stringValue = packageDescription.version;
-    }
-    else if([tableColumn.identifier isEqualToString:@"Authors"]) {
-        PackageDescription *packageDescription = [self.packageDescriptions objectAtIndex:row];
-        NSString *authors = [packageDescription.authors componentsJoinedByString:@", "];
-        cellView.textField.stringValue = authors;
+    else if (tableView == self.packageVersionsView) {
+        NSInteger selectedRow = [self.packagesView selectedRow];
+        if (selectedRow >= 0 && selectedRow < [self.packageDescriptions count]) {
+
+            PackageDescription *package = self.packageDescriptions[selectedRow];
+            PackageVersion *version = [package.versions objectAtIndex:row];
+            cellView.textField.stringValue = version.version;
+        }
     }
 
     return cellView;
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return [self.packageDescriptions count];
+    if (tableView == self.packagesView) {
+        return [self.packageDescriptions count];
+    }
+
+    if (tableView == self.packageVersionsView) {
+        NSInteger selectedRow = [self.packagesView selectedRow];
+        if (selectedRow < 0 || selectedRow >= [self.packageDescriptions count]) {
+            return 0;
+        }
+
+        PackageDescription *package = self.packageDescriptions[selectedRow];
+        return package.versions.count;
+    }
+
+    return 0;
 }
 
-- (IBAction)fitlerPackages:(id)sender {
-}
 @end
 

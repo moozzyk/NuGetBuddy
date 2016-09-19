@@ -152,8 +152,10 @@
 + (NSArray *)parsePackageVersions:(NSArray *)packageVersionsJson {
     NSMutableArray *versions = [[NSMutableArray alloc] initWithCapacity:[packageVersionsJson count]];
 
-    for (NSDictionary *versionInfo in packageVersionsJson)
+    for (long i = [packageVersionsJson count] - 1; i >= 0; --i)
     {
+        NSDictionary *versionInfo = packageVersionsJson[i];
+
         [versions addObject:[[PackageVersion alloc] init:[versionInfo objectForKey:@"@id"] version:[versionInfo objectForKey:@"version"]]];
     }
 

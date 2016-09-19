@@ -392,11 +392,12 @@
             XCTAssertEqual(package1.versions.count, 2);
 
             PackageVersion *version1 = package1.versions[0];
-            XCTAssertEqualObjects(version1.version, @"6.6.1944");
-            XCTAssertEqualObjects(version1.versionId, @"version-id-link-6.6.1944");
+            XCTAssertEqualObjects(version1.version, @"8.5.1944");
+            XCTAssertEqualObjects(version1.versionId, @"version-id-link-8.5.1944");
+
             PackageVersion *version2 = package1.versions[1];
-            XCTAssertEqualObjects(version2.version, @"8.5.1944");
-            XCTAssertEqualObjects(version2.versionId, @"version-id-link-8.5.1944");
+            XCTAssertEqualObjects(version2.version, @"6.6.1944");
+            XCTAssertEqualObjects(version2.versionId, @"version-id-link-6.6.1944");
 
             PackageDescription *package2 = packages[1];
             XCTAssertEqualObjects(package2.packageId, @"Mr. Bean");
